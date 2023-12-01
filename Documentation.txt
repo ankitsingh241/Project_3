@@ -1,0 +1,78 @@
+4 Instance
+Jenkins
+Developer
+Ansible
+Web-Server
+
+To change the hostname use command
+hostnamectl set-hostname jenkins/ansible
+bash
+
+
+1. Jenkins : 1. Install jenkins
+             2. Start 
+
+2. Ansible : 1. Install Ansible
+             2. vim /etc/ansible/hosts 
+                add [web]
+                Private IP of web-server
+             
+3. Web-Server: 1. yum install httpd or apache2
+               2. systemctl start httpd or apache2
+                  systemctl enable httpd or apache2
+               3. cd /var/www/html
+                  if there is a html file, delete it.
+               3. passwd --> set the password
+               4. vim /etc/ssh/sshd_config
+                  Uncomment PermitRootlogin yes
+                            PasswordAuthentication no --> yes
+               5. systemctl restart sshd
+
+4. Now to establish passwordless connection between these server
+   use command in ansible-server
+   ssh-keygen
+5. To copy this key id to webserver use command in webserver
+   ssh-copy-id -i root@public_ip_webserver
+   or
+   cat ~/.ssh/id_rsa.pub | ssh root@13.232.89.158 'cat >> ~/.ssh/authorized_key'
+   enter the password of webserver.
+6.Ansible :    1. passwd --> set the password
+               2. vim /etc/ssh/sshd_config
+                  Uncomment PermitRootlogin yes
+                            PasswordAuthentication no --> yes
+               3. systemctl restart sshd
+7. Jenkins :   1. Now to establish passwordless connection between these server
+                  use command in jenkins-server
+                  ssh-keygen
+               2. To copy this key id to ansible use command in jenkins
+                  ssh-copy-id -i root@public_ip_webserver
+                  or
+                  cat ~/.ssh/id_rsa.pub | ssh root@13.232.89.158 'cat >> ~/.ssh/authorized_key'
+                  enter the password of ansible.
+                  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

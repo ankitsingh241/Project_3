@@ -1,0 +1,8 @@
+- hosts : all
+  task :
+      - copy :
+          src : /opt/index.html # source where the file is present.
+          dest : /var/www/html  # destination in webserver.
+
+
+          
