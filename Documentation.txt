@@ -49,7 +49,7 @@ bash
                   or
                   cat ~/.ssh/id_rsa.pub | ssh root@13.232.89.158 'cat >> ~/.ssh/authorized_key'
                   enter the password of ansible.
-                  
+ 8. rsync -avh /var/lib/jenkins/workspace/Projec-3/*.html root@13.233.124.207:/opt/index.html                 
 
 
 
